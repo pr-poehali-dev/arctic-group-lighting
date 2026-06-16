@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import { useToast } from '@/hooks/use-toast';
 import Catalog from '@/components/Catalog';
 
 const HERO_IMG = 'https://cdn.poehali.dev/projects/bc1f4fb4-c6d7-44db-b1ef-cad46090ff0e/files/86991160-acff-4f01-b8fb-c2b167b7e5f4.jpg';
+const SEND_LEAD_URL = 'https://functions.poehali.dev/6c4bd26c-2d44-44dc-a7e5-c7e12b73bb6a';
 
 const navLinks = [
   { label: 'Главная', href: '#home' },
@@ -17,6 +19,32 @@ const navLinks = [
 
 const Index = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { toast } = useToast();
+  const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.phone.trim()) {
+      toast({ title: 'Заполните имя и телефон', variant: 'destructive' });
+      return;
+    }
+    setSending(true);
+    try {
+      const res = await fetch(SEND_LEAD_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      toast({ title: 'Заявка отправлена!', description: 'Менеджер свяжется с вами в ближайшее время.' });
+      setForm({ name: '', phone: '', email: '', message: '' });
+    } catch {
+      toast({ title: 'Не удалось отправить', description: 'Попробуйте позже или позвоните нам.', variant: 'destructive' });
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -239,12 +267,14 @@ const Index = () => {
                 ))}
               </div>
             </div>
-            <form className="relative space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <input type="text" placeholder="Ваше имя" className="w-full h-12 px-4 rounded-lg bg-background border border-border focus:border-primary outline-none transition-colors" />
-              <input type="tel" placeholder="Телефон" className="w-full h-12 px-4 rounded-lg bg-background border border-border focus:border-primary outline-none transition-colors" />
-              <input type="email" placeholder="Email" className="w-full h-12 px-4 rounded-lg bg-background border border-border focus:border-primary outline-none transition-colors" />
-              <textarea placeholder="Опишите задачу или укажите модели" rows={4} className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary outline-none transition-colors resize-none" />
-              <Button size="lg" className="w-full glow-shadow">Отправить заявку</Button>
+            <form className="relative space-y-4" onSubmit={handleSubmit}>
+              <input type="text" placeholder="Ваше имя" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full h-12 px-4 rounded-lg bg-background border border-border focus:border-primary outline-none transition-colors" />
+              <input type="tel" placeholder="Телефон" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="w-full h-12 px-4 rounded-lg bg-background border border-border focus:border-primary outline-none transition-colors" />
+              <input type="email" placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="w-full h-12 px-4 rounded-lg bg-background border border-border focus:border-primary outline-none transition-colors" />
+              <textarea placeholder="Опишите задачу или укажите модели" rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary outline-none transition-colors resize-none" />
+              <Button type="submit" size="lg" disabled={sending} className="w-full glow-shadow">
+                {sending ? 'Отправляем...' : 'Отправить заявку'}
+              </Button>
             </form>
           </div>
         </div>
