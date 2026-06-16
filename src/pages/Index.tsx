@@ -112,8 +112,13 @@ const Index = () => {
             </div>
           </div>
           <div className="relative animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="rounded-2xl overflow-hidden border border-border glow-shadow">
-              <img src={HERO_IMG} alt="Промышленный светильник ПРОМСВЕТ" className="w-full h-full object-cover" />
+            <div className="relative rounded-2xl overflow-hidden flex items-center justify-center" style={{ background: 'radial-gradient(ellipse at 60% 40%, hsl(200 95% 18% / 0.9) 0%, hsl(215 50% 7%) 70%)' }}>
+              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 80%, hsl(200 95% 50% / 0.18) 0%, transparent 70%)' }} />
+              <img
+                src="https://cdn.poehali.dev/projects/bc1f4fb4-c6d7-44db-b1ef-cad46090ff0e/bucket/b2da0549-96c3-4feb-b88c-ec5c15082ffd.png"
+                alt="Промышленный светильник ПРОМСВЕТ"
+                className="relative w-full object-contain drop-shadow-[0_0_40px_rgba(0,200,255,0.35)] py-8 px-4"
+              />
             </div>
           </div>
         </div>
