@@ -15,7 +15,7 @@ export interface Product {
 export const productTypes = ['Подвесной', 'Линейный', 'Прожектор', 'Уличный', 'Взрывозащищённый', 'Школьный'];
 
 export const products: Product[] = [
-  { id: 13, name: 'ПРОМСВЕТ Школьный', model: 'PS-SCH-40', type: 'Школьный', power: 40, lumen: 4800, ip: 'IP40', price: 2900, temp: '4000K', warranty: 5, image: 'https://cdn.poehali.dev/projects/bc1f4fb4-c6d7-44db-b1ef-cad46090ff0e/bucket/a63886a0-31c9-451b-acd2-1e86f22884a8.jpg' },
+  { id: 13, name: 'ПРОМСВЕТ Школьный', model: 'ПРОМСВЕТ 020', type: 'Школьный', power: 209, lumen: 32400, ip: 'IP68', price: 0, temp: '6000K', warranty: 5, image: 'https://cdn.poehali.dev/projects/bc1f4fb4-c6d7-44db-b1ef-cad46090ff0e/bucket/25120fbd-446e-44fb-9a67-73b0b5d1de10.jpg' },
   { id: 1, name: 'ПРОМСВЕТ Highbay', model: 'PS-HB-100', type: 'Подвесной', power: 100, lumen: 16000, ip: 'IP65', price: 8900, temp: '5000K', warranty: 5 },
   { id: 2, name: 'ПРОМСВЕТ Highbay', model: 'PS-HB-150', type: 'Подвесной', power: 150, lumen: 24000, ip: 'IP65', price: 12400, temp: '5000K', warranty: 5 },
   { id: 3, name: 'ПРОМСВЕТ Highbay', model: 'PS-HB-200', type: 'Подвесной', power: 200, lumen: 32000, ip: 'IP66', price: 16800, temp: '5700K', warranty: 5 },

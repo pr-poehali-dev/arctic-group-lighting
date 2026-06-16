@@ -133,7 +133,7 @@ const Catalog = () => {
                       <span className="flex items-center gap-1"><Icon name="ShieldCheck" size={12} className="text-primary" /> {p.warranty} лет</span>
                     </div>
                     <div className="flex items-center justify-between pt-3 border-t border-border">
-                      <span className="font-display text-xl font-bold">{p.price.toLocaleString()} ₽</span>
+                      <span className="font-display text-xl font-bold">{p.price ? `${p.price.toLocaleString()} ₽` : 'По запросу'}</span>
                       <Button size="sm" variant="secondary">В заявку</Button>
                     </div>
                   </div>
