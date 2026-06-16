@@ -4,7 +4,7 @@ import Icon from '@/components/ui/icon';
 import { useToast } from '@/hooks/use-toast';
 import Catalog from '@/components/Catalog';
 
-const HERO_IMG = 'https://cdn.poehali.dev/projects/bc1f4fb4-c6d7-44db-b1ef-cad46090ff0e/files/7899d7d3-0c66-427f-bf10-bc855ba90d0b.jpg';
+const HERO_IMG = 'https://cdn.poehali.dev/projects/bc1f4fb4-c6d7-44db-b1ef-cad46090ff0e/files/86991160-acff-4f01-b8fb-c2b167b7e5f4.jpg';
 const SEND_LEAD_URL = 'https://functions.poehali.dev/6c4bd26c-2d44-44dc-a7e5-c7e12b73bb6a';
 
 const navLinks = [
