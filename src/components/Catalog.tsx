@@ -116,8 +116,11 @@ const Catalog = () => {
               <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
                 {filtered.map((p) => (
                   <div key={p.id} className="group bg-card border border-border rounded-xl p-5 hover:border-primary transition-all hover:glow-shadow">
-                    <div className="flex items-center justify-center h-32 mb-4 rounded-lg bg-secondary/50 relative overflow-hidden">
-                      <Icon name="Lightbulb" size={56} className="text-primary group-hover:animate-glow" />
+                    <div className="flex items-center justify-center h-36 mb-4 rounded-lg bg-secondary/50 relative overflow-hidden">
+                      {p.image
+                        ? <img src={p.image} alt={p.name} className="h-full w-full object-contain p-3" style={{ filter: 'drop-shadow(0 0 12px rgba(0,180,255,0.2))' }} />
+                        : <Icon name="Lightbulb" size={56} className="text-primary" />
+                      }
                       <span className="absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded bg-primary/20 text-primary">{p.ip}</span>
                     </div>
                     <span className="text-xs text-primary font-display tracking-wide">{p.type}</span>
